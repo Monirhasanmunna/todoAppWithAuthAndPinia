@@ -4,9 +4,14 @@
   const store = AppStore();
 
   const inputData = ref('')
+  const isChecked = ref(null)
+
+  function clearInput(){
+    inputData.value = ''
+  }
   
   function insertInputData(){
-      store.addProject(inputData)
+      store.addProject(inputData, clearInput)
   }
 
   onMounted(()=>{
@@ -30,12 +35,16 @@
         <div>
 
           
-           <div class="flex mb-4 items-center" v-for="(project, index) in store.inCompleteProject" :key="index">
+          <div class="flex mb-4 items-center" v-for="(project, index) in store.inCompleteProject" :key="index">
             <p class="w-full text-grey-darkest">{{ project.name }}</p>
+
             <button
-             @click="store.doneAsComplete(project.id)" type="button" class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green border-green hover:bg-green">Done</button>
+             @click="store.doneAsComplete(project.id)" type="button" class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green border-green hover:bg-green">
+             Done
+            </button>
+
             <button type="button" @click="store.deleteProject(project.id)"
-              class="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red">Remove</button>
+              class="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red">X</button>
           </div>
           
           <br><br>

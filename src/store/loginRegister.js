@@ -23,6 +23,8 @@ const store =  defineStore('register',()=>{
             isAuthenticate.value = true
             userInfo.value = response.data
             router.push('/todos')
+        }else{
+            console.log(response.data.message)
         }
     }
 
@@ -33,6 +35,8 @@ const store =  defineStore('register',()=>{
         router.push('/login')
         userInfo.value = ''
     }
+
+
 
 
     return {registration, login, logOut, isAuthenticate, userInfo}

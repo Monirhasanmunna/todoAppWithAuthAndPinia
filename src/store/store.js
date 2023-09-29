@@ -7,7 +7,7 @@ const AppStore = defineStore('uniqueID', ()=>{
     const inCompleteProject = ref([]);
     const completeProject = ref([]);
 
-    const addProject = async function(inputData){
+    const addProject = async function(inputData, clearData){
         const data = reactive({
             name : inputData,
             status : 'pending'
@@ -17,6 +17,7 @@ const AppStore = defineStore('uniqueID', ()=>{
        if (response.status == 200){
             inCompleteProjectsFunction()
             completeProjectsFunction()
+            clearData()
        }
     }
 
